@@ -17,3 +17,5 @@ You need to go to "..\invest_app\backend\django_system" and input this:<br>
 <code>python manage.py runserver</code><br>
 
 <img src='instructions/Screenshot_7.png'>
+<img src='instructions/Screenshot_8.png'>
+<h2>congratulations!</h2>
