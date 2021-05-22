@@ -11,9 +11,9 @@ OR
 <img src='instructions/Screenshot_5.png'>
 <img src='instructions/Screenshot_6.png'>
 You need to go to "..\invest_app\backend\django_system" and input this:<br>
-<code>
-python manage.py makemigrations<br>
-python manage.py migrate<br>
-python manage.py runserver<br>
-</code>
+
+<code>python manage.py makemigrations</code><br>
+<code>python manage.py migrate</code><br>
+<code>python manage.py runserver</code><br>
+
 <img src='instructions/Screenshot_7.png'>
