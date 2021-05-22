@@ -10,3 +10,10 @@ OR
 <img src='instructions/Screenshot_4.png'>
 <img src='instructions/Screenshot_5.png'>
 <img src='instructions/Screenshot_6.png'>
+You need to go to "..\invest_app\backend\django_system" and input this:<br>
+
+<code>python manage.py makemigrations</code><br>
+<code>python manage.py migrate</code><br>
+<code>python manage.py runserver</code><br>
+
+<img src='instructions/Screenshot_7.png'>
