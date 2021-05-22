@@ -6,3 +6,4 @@ from .models import *
 # Register your models here.
 admin.site.register(Asset)
 admin.site.register(Portfolio)
+admin.site.register(DealHistory)
