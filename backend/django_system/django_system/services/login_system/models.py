@@ -64,7 +64,7 @@ class Profile(models.Model):
     photo = models.ImageField("Изображение", upload_to="profiles/photos",
                               null=True,
                               default="profiles/photos/no-image-user.jpg")
-    balance = models.DecimalField('Баланс', max_digits=6, decimal_places=2)
+    balance = models.DecimalField('Баланс', max_digits=6, decimal_places=2, null=True)
 
     # class Meta:
     #     verbose_name = "Профиль"
