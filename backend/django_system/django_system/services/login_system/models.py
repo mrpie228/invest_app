@@ -39,7 +39,9 @@ class User(AbstractUser):
                                             verbose_name='Дата и время последней активности')
 
     # invited_users = models.ManyToManyField(User, related_name='invited')
-    SEX_ROLES = [('man', 'Мужчина'), ('woman', 'Женщина'), ]
+    SEX_ROLES = [('without', 'Пол не указан'),
+                 ('man', 'Мужчина'),
+                 ('woman', 'Женщина'), ]
     sex = models.CharField(max_length=20, choices=USER_ROLES,
                            verbose_name='Пол пользователя',
                            default=SEX_ROLES[0][0])
@@ -59,14 +61,14 @@ class User(AbstractUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="Пользователь")
-    photo = models.ImageField("Изображение", max_file_size=MAX_COMPANY_AVATAR_SIZE, upload_to="profiles/photos",
+    photo = models.ImageField("Изображение", upload_to="profiles/photos",
                               null=True,
                               default="profiles/photos/no-image-user.jpg")
     balance = models.DecimalField('Баланс', max_digits=6, decimal_places=2)
 
-    class Meta:
-        verbose_name = "Профиль"
-        verbose_name = "Профили"
+    # class Meta:
+    #     verbose_name = "Профиль"
+    #     verbose_name = "Профили"
 
 
 def create_user_profile(sender, instance, created, **kwargs):
