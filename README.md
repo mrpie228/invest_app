@@ -13,6 +13,7 @@ OR
 
 Then you need to input:<br>
 <code>pip install -r requirements.txt</code><br>
+<img src='instructions/Screenshot_9.png'>
 After go to "..\invest_app\backend\django_system" and input this:<br>
 
 <code>python manage.py makemigrations</code><br>
