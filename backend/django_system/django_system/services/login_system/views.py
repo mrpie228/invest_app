@@ -23,7 +23,7 @@ class LoginView(APIView):
 
         user = User.objects.filter(email=email).first()
 
-        if user in None:
+        if user is None:
             raise AuthenticationFailed('We have not this user...')
 
         if not user.check_password(password):
@@ -35,7 +35,7 @@ class LoginView(APIView):
             'iat': datetime.datetime.utcnow()
         }
 
-        token = jwt.encode(payload, 'secret', algorithm='HS256').decode('utf-8')
+        token = jwt.encode(payload, 'secret', algorithm='HS256')
 
         response = Response()
 
@@ -44,7 +44,7 @@ class LoginView(APIView):
             'jwt': token,
 
         }
-        return Response({'message': 'User is auth'})
+        return response
 
     # Need to add http responses
 
