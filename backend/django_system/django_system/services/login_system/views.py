@@ -51,7 +51,7 @@ class LoginView(APIView):
 
 class ProfileView(APIView):
     def get(self, request):
-        token = request.COOCKIES.get('jwt')
+        token = request.COOKIES.get('jwt')
 
         if not token:
             raise AuthenticationFailed("No token")
