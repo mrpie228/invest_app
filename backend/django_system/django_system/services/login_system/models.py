@@ -66,6 +66,8 @@ class Profile(models.Model):
                               default="profiles/photos/no-image-user.jpg")
     balance = models.DecimalField('Баланс', max_digits=6, decimal_places=2, null=True)
 
+    def __str__(self):
+        return self.user.username
     # class Meta:
     #     verbose_name = "Профиль"
     #     verbose_name = "Профили"

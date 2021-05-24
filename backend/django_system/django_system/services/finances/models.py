@@ -13,7 +13,7 @@ class Asset(models.Model):
 
 
 class Portfolio(models.Model):
-    assets = models.ManyToManyField(Asset, verbose_name='Активы', related_name='assets')
+    assets = models.ManyToManyField(Asset, verbose_name='Активы', related_name='assets', null=True)
     profile = models.ManyToManyField(Profile, verbose_name='Профиль',
                                      related_name='profile')
     sum = models.DecimalField('Сумма', max_digits=6, decimal_places=2)
