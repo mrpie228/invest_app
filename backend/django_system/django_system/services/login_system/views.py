@@ -1,15 +1,16 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
-from .serializers import UserSeializer
+from .serializers import UserSerializer, ProfileSerializer
 from rest_framework.response import Response
-from .models import User
+from .models import User, Profile
 from rest_framework.exceptions import AuthenticationFailed
-import jwt, datetime
+import jwt
+import datetime
 
 
 class RegisterView(APIView):
     def post(self, request):
-        serializer = UserSeializer(data=request.data)
+        serializer = UserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
@@ -48,7 +49,7 @@ class LoginView(APIView):
     # Need to add http responses
 
 
-class UserView(APIView):
+class ProfileView(APIView):
     def get(self, request):
         token = request.COOCKIES.get('jwt')
 
@@ -60,8 +61,8 @@ class UserView(APIView):
         except jwt.ExpiredSignatureError:
             raise AuthenticationFailed('You unauth')
 
-        user = User.objects.filter(id=payload['id']).first()
-        serializer = UserSeializer(user)
+        profile = Profile.objects.filter(user__pk=payload['id']).first
+        serializer = ProfileSerializer(profile)
         return Response(serializer.data)
 
 

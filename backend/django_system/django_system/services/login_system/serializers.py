@@ -1,8 +1,14 @@
 from rest_framework import serializers
-from .models import User
+from .models import User, Profile
 
 
-class UserSeializer(serializers.ModelSerializer):
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ['__all__', ]
+
+
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'name', 'email', 'password']
@@ -17,4 +23,3 @@ class UserSeializer(serializers.ModelSerializer):
             instanse.set_password(password)
         instanse.save()
         return instanse
-
