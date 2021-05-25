@@ -7,3 +7,4 @@ from .models import *
 admin.site.register(Asset)
 admin.site.register(Portfolio)
 admin.site.register(DealHistory)
+admin.site.register(Item)

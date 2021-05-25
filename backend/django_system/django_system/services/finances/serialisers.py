@@ -5,16 +5,16 @@ from .models import Asset, DealHistory, Portfolio
 class AssetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Asset
-        fields = ['__all__', ]
+        fields = ['name', 'ticker', 'price', 'type']
 
 
 class PortfolioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Portfolio
-        fields = ['__all__', ]
+        fields = '__all__'
 
 
 class DealHistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = DealHistory
-        fields = ['__all__', ]
+        fields = '__all__'

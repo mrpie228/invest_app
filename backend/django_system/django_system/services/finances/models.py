@@ -7,23 +7,30 @@ from login_system.models import Profile, User
 class Asset(models.Model):
     name = models.CharField(max_length=255, verbose_name='Наименование актива',
                             null=True, blank=True)
-    ticker = models.CharField(max_length=100, verbose_name='Тикер актива', null=True, blank=True)
+    ticker = models.CharField(max_length=100, verbose_name='Тикер актива', null=True, blank=True, unique=True)
     price = models.DecimalField('Стоимость актива', max_digits=6, decimal_places=2)
-    count = models.PositiveIntegerField(verbose_name='Количество')
+    TYPES = [('no_type', ' Без типа'),
+             ('stock', 'акции/облигации'),
+             ('crypto', 'токен')]
+    type = models.CharField(max_length=20, choices=TYPES,
+                            verbose_name='Тип актива',
+                            default=TYPES[0][0])
+    def __str__(self):
+        return self.name
+
+class Item(models.Model):
+    asset = models.OneToOneField(Asset, on_delete=models.DO_NOTHING)
+    # if asset.type == 'stock' or asset.type == 'no_type':
+    #     count = models.PositiveIntegerField(verbose_name='Количество')
+    # else:
+    count = models.FloatField(verbose_name='Количество ')
 
 
 class Portfolio(models.Model):
-    assets = models.ManyToManyField(Asset, verbose_name='Активы', related_name='assets', null=True)
+    items = models.ManyToManyField(Item, verbose_name='Активы', related_name='assets', null=True)
     profile = models.ManyToManyField(Profile, verbose_name='Профиль',
                                      related_name='profile')
     sum = models.DecimalField('Сумма', max_digits=6, decimal_places=2)
-
-    def get_sum(self):
-        for asset in self.assets:
-            all_price = asset.price + all_price
-        self.sum = all_price
-        self.save()
-        return all_price
 
 
 class DealHistory(models.Model):
