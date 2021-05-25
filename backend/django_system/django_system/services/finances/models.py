@@ -15,8 +15,11 @@ class Asset(models.Model):
     type = models.CharField(max_length=20, choices=TYPES,
                             verbose_name='Тип актива',
                             default=TYPES[0][0])
+    description = models.TextField(null=True)
+
     def __str__(self):
         return self.name
+
 
 class Item(models.Model):
     asset = models.OneToOneField(Asset, on_delete=models.DO_NOTHING)

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Asset, DealHistory, Portfolio
 from rest_framework.response import Response
 from django.http import Http404
-from .serialisers import AssetSerializer
+from .serialisers import AssetSerializer, AssetsSerializer
 from rest_framework import generics
 
 
@@ -18,12 +18,12 @@ class AssetView(generics.RetrieveAPIView):
 
 
 class AssetsView(generics.ListAPIView):
-    serializer_class = AssetSerializer
+    serializer_class = AssetsSerializer
 
     def get_queryset(self):
         try:
             assets = Asset.objects.all()
-            serializer = AssetSerializer(assets, many=True)
+            serializer = AssetsSerializer(assets, many=True)
         except:
             raise Http404("We cant find this asset")
 
