@@ -2,6 +2,10 @@ from rest_framework import serializers
 from .models import Asset, DealHistory, Portfolio
 
 
+class ApproverSearchSerializer(serializers.Serializer):
+    search_text = serializers.CharField(required=False, allow_blank=True)
+
+
 class AssetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Asset
