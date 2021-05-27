@@ -38,6 +38,7 @@ class Portfolio(models.Model):
 
 class DealHistory(models.Model):
     time = models.TimeField(auto_now_add=True)
+    items = models.ManyToManyField(Item, verbose_name='Предметы сделки', related_name='deal_assets', null=True)
     WHAT_HAPPEND = [('no_type', ' Без типа'),
                     ('buy_stock', 'Покупка акции/облигации'),
                     ('buy_crypto', 'Покупка токенизированных активов'),
@@ -49,8 +50,8 @@ class DealHistory(models.Model):
                                  default=WHAT_HAPPEND[0][0])
     dealers = models.ManyToManyField(User, verbose_name='Участник(и) сделки',
                                      related_name='dealers')
-    deal_owner = models.ManyToManyField(User, verbose_name='Участник(и) сделки',
-                                        related_name='deal_owner')
+    deal_owner = models.OneToOneField(User, verbose_name='Иннициатор сделки',
+                                      related_name='deal_owner',on_delete=models.CASCADE)
     price = models.DecimalField('Стоимость актива', max_digits=6, decimal_places=2)
 
 # class Commision(models.Model):
