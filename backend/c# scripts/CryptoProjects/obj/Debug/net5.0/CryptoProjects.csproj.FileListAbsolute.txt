@@ -1,0 +1,17 @@
+G:\Проекты с Валей\CryptoProjects\bin\Debug\net5.0\CryptoProjects.exe
+G:\Проекты с Валей\CryptoProjects\bin\Debug\net5.0\CryptoProjects.deps.json
+G:\Проекты с Валей\CryptoProjects\bin\Debug\net5.0\CryptoProjects.runtimeconfig.json
+G:\Проекты с Валей\CryptoProjects\bin\Debug\net5.0\CryptoProjects.runtimeconfig.dev.json
+G:\Проекты с Валей\CryptoProjects\bin\Debug\net5.0\CryptoProjects.dll
+G:\Проекты с Валей\CryptoProjects\bin\Debug\net5.0\ref\CryptoProjects.dll
+G:\Проекты с Валей\CryptoProjects\bin\Debug\net5.0\CryptoProjects.pdb
+G:\Проекты с Валей\CryptoProjects\obj\Debug\net5.0\CryptoProjects.GeneratedMSBuildEditorConfig.editorconfig
+G:\Проекты с Валей\CryptoProjects\obj\Debug\net5.0\CryptoProjects.AssemblyInfoInputs.cache
+G:\Проекты с Валей\CryptoProjects\obj\Debug\net5.0\CryptoProjects.AssemblyInfo.cs
+G:\Проекты с Валей\CryptoProjects\obj\Debug\net5.0\CryptoProjects.csproj.CoreCompileInputs.cache
+G:\Проекты с Валей\CryptoProjects\obj\Debug\net5.0\CryptoProjects.dll
+G:\Проекты с Валей\CryptoProjects\obj\Debug\net5.0\ref\CryptoProjects.dll
+G:\Проекты с Валей\CryptoProjects\obj\Debug\net5.0\CryptoProjects.pdb
+G:\Проекты с Валей\CryptoProjects\obj\Debug\net5.0\CryptoProjects.genruntimeconfig.cache
+G:\Проекты с Валей\CryptoProjects\bin\Debug\net5.0\Newtonsoft.Json.dll
+G:\Проекты с Валей\CryptoProjects\obj\Debug\net5.0\CryptoProjects.csproj.CopyComplete

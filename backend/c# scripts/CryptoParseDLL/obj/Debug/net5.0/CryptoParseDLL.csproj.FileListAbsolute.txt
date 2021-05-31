@@ -1,0 +1,11 @@
+G:\Проекты с Валей\CryptoParseDLL\bin\Debug\net5.0\CryptoParseDLL.deps.json
+G:\Проекты с Валей\CryptoParseDLL\bin\Debug\net5.0\CryptoParseDLL.dll
+G:\Проекты с Валей\CryptoParseDLL\bin\Debug\net5.0\ref\CryptoParseDLL.dll
+G:\Проекты с Валей\CryptoParseDLL\bin\Debug\net5.0\CryptoParseDLL.pdb
+G:\Проекты с Валей\CryptoParseDLL\obj\Debug\net5.0\CryptoParseDLL.GeneratedMSBuildEditorConfig.editorconfig
+G:\Проекты с Валей\CryptoParseDLL\obj\Debug\net5.0\CryptoParseDLL.AssemblyInfoInputs.cache
+G:\Проекты с Валей\CryptoParseDLL\obj\Debug\net5.0\CryptoParseDLL.AssemblyInfo.cs
+G:\Проекты с Валей\CryptoParseDLL\obj\Debug\net5.0\CryptoParseDLL.csproj.CoreCompileInputs.cache
+G:\Проекты с Валей\CryptoParseDLL\obj\Debug\net5.0\CryptoParseDLL.dll
+G:\Проекты с Валей\CryptoParseDLL\obj\Debug\net5.0\ref\CryptoParseDLL.dll
+G:\Проекты с Валей\CryptoParseDLL\obj\Debug\net5.0\CryptoParseDLL.pdb

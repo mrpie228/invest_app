@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "XzVwcbWT47c+mWTixcK0oxZmcJlIxJt8rcjmlCT51x4vu06ssfKQjJrXw6rRYaqtT/8F5L6A9V2023+xBm/FqA==",
+  "success": true,
+  "projectFilePath": "G:\\Проекты с Валей\\TestsDLLEnter\\TestsDLLEnter.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\beyno.DESKTOP-2P68Q9F\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
