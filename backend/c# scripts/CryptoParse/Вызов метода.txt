@@ -1,0 +1,4 @@
+Перед использованием библиотеки необходимо к проекту подключить Newtonsoft.Json.dll
+
+using CryptoParseDLL; //Подключение библиотеки 
+CryproParse.StartParse(); //Вызов библиотеки
