@@ -1,0 +1,9 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\beyno.DESKTOP-2P68Q9F\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\beyno.DESKTOP-2P68Q9F\\.nuget\\packages",
+      "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet"
+    ]
+  }
+}
