@@ -2,7 +2,7 @@ import os
 
 
 def parse_crypto():
-    os.startfile(r'.\c# scripts\CryptoParse\exe\TestsDLLEnter.exe')
+    os.startfile(r'.\c_sharp_scripts\CryptoParse\exe\TestsDLLEnter.exe')
 
 
 if __name__ == '__main__':
