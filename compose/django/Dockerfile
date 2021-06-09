@@ -20,7 +20,7 @@ RUN apk update && apk add --no-cache \
     jpeg 
 # un-comment the following two dependecies if you want to add library like pandas, scipy and numpy
 # openblas \ 
-# libstdc++ 
+# libstdc++
 
 # Installing temporary packages required for installing requirements.pip 
 RUN apk add --no-cache --virtual build-deps \
@@ -29,7 +29,9 @@ RUN apk add --no-cache --virtual build-deps \
     musl-dev \
     postgresql-dev\
     zlib-dev \
-    jpeg-dev 
+    jpeg-dev \
+    wine\
+    sudo
 # un-comment if you want to install numpy, pandas, scipy etc and their supported dependencies
 # g++ \
 # openblas-dev \
@@ -55,4 +57,4 @@ RUN apk del build-deps && \
     rm -rf ~/.cache/pip
 
 # CMD will run when this dockerfile is running
-CMD ["sh", "-c", "python manage.py collectstatic --no-input; python manage.py migrate; gunicorn django_system.wsgi -b 0.0.0.0:8000 & celery --app myapp.tasks worker --loglevel=INFO"]
+CMD ["sh", "-c", "python manage.py collectstatic --no-input; python manage.py migrate; gunicorn django_system.wsgi -b 0.0.0.0:8000 & celery --app myapp.tasks worker --loglevel=INFO & celery --app myapp beat --loglevel=INFO ;"]
