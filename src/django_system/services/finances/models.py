@@ -51,8 +51,16 @@ class DealHistory(models.Model):
     dealers = models.ManyToManyField(User, verbose_name='Участник(и) сделки',
                                      related_name='dealers')
     deal_owner = models.OneToOneField(User, verbose_name='Иннициатор сделки',
-                                      related_name='deal_owner',on_delete=models.CASCADE)
+                                      related_name='deal_owner', on_delete=models.CASCADE)
     price = models.DecimalField('Стоимость актива', max_digits=6, decimal_places=2)
+    DEAL_STATUS = [('started', ' Начало'),
+                   ('not_paid', 'Не оплачена'),
+                   ('awaiting_payment', 'Ожидает оплаты'),
+                   ('canceled', 'Отменена'),
+                   ('ended', 'Завершена')]
+    status = models.CharField(max_length=40, choices=DEAL_STATUS,
+                              verbose_name='Тип сделки',
+                              default=DEAL_STATUS[0][0])
 
 # class Commision(models.Model):
 #     percent = models.DecimalField('Процент коммисии',)
