@@ -1,10 +1,11 @@
-from .models import *
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework import generics
 from rest_framework.views import APIView
 from .serialisers import *
 from django.conf import settings
+from .parse_stocks import create_all, PATH_TO_STOCKS_DB_LIST
+from .models import Asset
+import sqlite3
 
 # class AbsLoginRequiredAPIView(APIView, metaclass=abc.ABCMeta):
 #     # permission_classes = (IsAuthenticated,)
@@ -52,3 +53,29 @@ class AssetOperation(APIView):
             comission = get_comission(user=request.user, assets_price=price)
             # NEED TO CREATE DEAL HISTORY
         return Response('context', status=status.HTTP_200_OK)
+
+
+class ParseStocks(APIView):
+    def get(self, request):
+        try:
+            count = create_all()
+            response = Response(f'parsed {count} stocks', status=status.HTTP_200_OK)
+        except Exception as e:
+            response = Response('failed', status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+        return response
+
+
+class UpdateStocks(APIView):
+    def get(self, request):
+        conn = sqlite3.connect(PATH_TO_STOCKS_DB_LIST)
+        with conn:
+            cur = conn.cursor()
+            cur.execute("SELECT * FROM stocks_list")
+            assets = cur.fetchall()
+
+            for asset in assets:
+                one_asset, created = Asset.objects.update_or_create(name=asset[1], ticker=asset[2], sector=asset[4],
+                                                                    defaults={'price': asset[3], 'type': 'stock'})
+        conn.close()
+        return Response(f'updated {len(assets)} stocks', status=status.HTTP_200_OK)

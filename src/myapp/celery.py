@@ -23,12 +23,12 @@ def debug_task(self):
 app.conf.beat_schedule = {
     'parse_crypto_every_minute': {
         'task': 'myapp.tasks.parse_crypto',
-        'schedule': crontab(hour='*/10'),
+        'schedule': crontab(minute='*/5'),
         # change time later
     },
     'parse_stocks_every_5_minutes': {
         'task': 'myapp.tasks.parse_stocks',
-        'schedule': crontab(hour='*/10'),
+        'schedule': crontab(minute='*/5'),
         # change time later
     }
 }

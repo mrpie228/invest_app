@@ -3,7 +3,6 @@ from django.db import models
 from login_system.models import Profile, User
 
 
-# Create your models here.
 class Asset(models.Model):
     name = models.CharField(max_length=255, verbose_name='Наименование актива',
                             null=True, blank=True)
@@ -15,6 +14,7 @@ class Asset(models.Model):
     type = models.CharField(max_length=20, choices=TYPES,
                             verbose_name='Тип актива',
                             default=TYPES[0][0])
+    sector = models.CharField(max_length=150, verbose_name='Сектор',null=True)
     description = models.TextField(null=True)
 
     def __str__(self):
@@ -23,9 +23,6 @@ class Asset(models.Model):
 
 class Item(models.Model):
     asset = models.OneToOneField(Asset, on_delete=models.DO_NOTHING)
-    # if asset.type == 'stock' or asset.type == 'no_type':
-    #     count = models.PositiveIntegerField(verbose_name='Количество')
-    # else:
     count = models.FloatField(verbose_name='Количество ')
 
 
@@ -61,6 +58,3 @@ class DealHistory(models.Model):
     status = models.CharField(max_length=40, choices=DEAL_STATUS,
                               verbose_name='Тип сделки',
                               default=DEAL_STATUS[0][0])
-
-# class Commision(models.Model):
-#     percent = models.DecimalField('Процент коммисии',)
