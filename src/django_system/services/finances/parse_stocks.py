@@ -11,9 +11,9 @@ dt_string = now.strftime("%d.%m.%Y %H:%M:%S")
 PATH_TO_STOCKS_DB = 'dbs/stocks.db'
 PATH_TO_STOCKS_DB_LIST = 'dbs/stocks_list.db'
 
-API_KEY = 'daff707ebcbd9df18fa54565fd27508a'
-all_stocks_url = f'https://financialmodelingprep.com/api/v3/stock/list/?apikey={API_KEY}'
-nasdaq_stocks_url = f'https://financialmodelingprep.com/api/v3/nasdaq_constituent?apikey={API_KEY}'
+API_KEY_FOR_STOCKS = os.environ.get('API_KEY_FOR_STOCKS')
+all_stocks_url = f'https://financialmodelingprep.com/api/v3/stock/list/?apikey={API_KEY_FOR_STOCKS}'
+nasdaq_stocks_url = f'https://financialmodelingprep.com/api/v3/nasdaq_constituent?apikey={API_KEY_FOR_STOCKS}'
 
 
 def get_nasdaq_companies(new_file=False):
