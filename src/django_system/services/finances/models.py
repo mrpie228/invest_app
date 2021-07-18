@@ -4,6 +4,7 @@ from login_system.models import Profile, User
 
 
 class Asset(models.Model):
+    icon = models.FileField("Изображение", upload_to="stocks_icons", null=True)
     name = models.CharField(max_length=255, verbose_name='Наименование актива',
                             null=True, blank=True)
     ticker = models.CharField(max_length=100, verbose_name='Тикер актива', null=True, blank=True, unique=True)
@@ -14,7 +15,7 @@ class Asset(models.Model):
     type = models.CharField(max_length=20, choices=TYPES,
                             verbose_name='Тип актива',
                             default=TYPES[0][0])
-    sector = models.CharField(max_length=150, verbose_name='Сектор',null=True)
+    sector = models.CharField(max_length=150, verbose_name='Сектор', null=True)
     description = models.TextField(null=True)
 
     def __str__(self):

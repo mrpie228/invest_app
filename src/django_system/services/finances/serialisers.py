@@ -15,7 +15,7 @@ class AssetSerializer(serializers.ModelSerializer):
 class AssetsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Asset
-        fields = ['name', 'ticker', 'price', 'type']
+        fields = ['icon', 'name', 'ticker', 'price', 'type']
 
 
 class PortfolioSerializer(serializers.ModelSerializer):
