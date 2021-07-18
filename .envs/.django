@@ -1,0 +1,6 @@
+DB_HOST=db
+DB_PORT=5432
+DB_PASSWORD=password
+DB_USER=user
+DB_NAME=django_db
+API_KEY_FOR_STOCKS=daff707ebcbd9df18fa54565fd27508a

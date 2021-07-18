@@ -21,7 +21,7 @@ OPERATION_TYPES = {'no_type': ' Без типа',
                    'exchange': 'Обмен'}
 
 
-def get_price(items):
+def     get_price(items):
     for item in items:
         assets_price = item.asset.price * items.count + assets_price
     return assets_price
@@ -76,6 +76,7 @@ class UpdateStocks(APIView):
 
             for asset in assets:
                 one_asset, created = Asset.objects.update_or_create(name=asset[1], ticker=asset[2], sector=asset[4],
-                                                                    defaults={'price': asset[3], 'type': 'stock'})
+                                                                    defaults={'price': asset[3], 'type': 'stock',
+                                                                              'icon': f'stocks_icon/{asset[2]}.svg'})
         conn.close()
         return Response(f'updated {len(assets)} stocks', status=status.HTTP_200_OK)

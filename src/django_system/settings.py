@@ -66,7 +66,7 @@ ROOT_URLCONF = 'django_system.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -153,10 +153,10 @@ MEDIA_URL = '/media/'
 CELERY_BROKER_URL = 'redis://redis:6379/0'
 CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
 
-STATIC_ROOT = './static/'
-MEDIA_ROOT = './media/'
-# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+STATIC_ROOT = '/static/'
+# MEDIA_ROOT = '/media/'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 LOGGING = {
     'version': 1,

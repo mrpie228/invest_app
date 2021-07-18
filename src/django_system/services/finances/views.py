@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from django.http import Http404
 from .serialisers import AssetSerializer, AssetsSerializer
 from rest_framework import generics
+from rest_framework.views import APIView
 
 
 class AssetView(generics.RetrieveAPIView):
@@ -39,3 +40,16 @@ class PortfolioView(generics.RetrieveAPIView):
             raise Http404("We cant find this asset")
 
         return Response(serializer.data)
+
+
+class MainPage(APIView):
+    def get(self, request, **kwargs):
+        # contex = {''}
+        return render(request, 'index.html')
+
+
+class MarketPage(APIView):
+    def get(self, request, **kwargs):
+        assets = Asset.objects.all()
+        contex = {'assets': assets}
+        return render(request, 'market.html', contex)

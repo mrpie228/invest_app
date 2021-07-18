@@ -4,7 +4,7 @@ from login_system.models import Profile, User
 
 
 class Asset(models.Model):
-    icon = models.FileField("Изображение", upload_to="stocks_icons", null=True)
+    icon = models.FileField("Изображение", upload_to="stocks_icon", null=True)
     name = models.CharField(max_length=255, verbose_name='Наименование актива',
                             null=True, blank=True)
     ticker = models.CharField(max_length=100, verbose_name='Тикер актива', null=True, blank=True, unique=True)

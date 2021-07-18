@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ru_RU">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Краткое описание страницы"/>
+    <title>Сайт</title>
+{#    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">#}
+    <link rel="stylesheet" href="{% static 'assets/css/main.min.css'%}">
+
+    <!--Стили графиков-->
+    <link rel="stylesheet" href="{% static 'assets/css/chartist.min.css'%}">
+    
+</head>
+<body>
+    <!--BEGIN: sidebar-->
+
+    <div class="modal-fog"></div>
+
+    <aside class="sidebar">
+
+        <div class="hide-sidebar-btn">
+            <div class="hide-sidebar-line_small"></div>
+            <div class="hide-sidebar-line_small"></div>
+            <div class="hide-sidebar-line_long"></div>
+            
+        </div>
+
+        <div class="sidebar__inner">
+            <a class = "logo" href="{% url 'main_page' %}">
+                <div class="logo__img-wrap">
+                    <img src="../static/assets/img/logo.png" alt="InvestApp" title="InvestApp">
+                </div>
+                <h4 class="logo__text">InvestApp</h4>
+            </a>
+
+            <nav class="sidebar__nav">
+                <ul class="menu">
+                    <li class="menu__item ">
+                        <a href="index.html" class="menu__link">
+                            <div class="menu__icon-wrap">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M24 13.0534L12 1L0 13.0534H2.31282V24H10.7891V16.7023H13.2109V24H21.6872V13.0534H24ZM8.36731 14.2697V21.5674H4.73461V11.7277L12 4.42993L19.2654 11.7277V21.5674H15.6327V14.2697H13.2109H10.7891H8.36731Z" fill="#2D2D2D"/>
+                                </svg>                                    
+                            </div>
+                            <p class="menu__link-text">Home</p>
+                        </a>
+                    </li>
+                    <li class="menu__item menu__item_active">
+                        <a href="market.html" class="menu__link">
+                            <div class="menu__icon-wrap">
+                                <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.41669 4.33335H20.5834C21.1817 4.33335 21.6667 4.81837 21.6667 5.41669V20.5834C21.6667 21.1817 21.1817 21.6667 20.5834 21.6667H5.41669C4.81838 21.6667 4.33335 21.1817 4.33335 20.5834V5.41669C4.33335 4.81838 4.81837 4.33335 5.41669 4.33335ZM2.16669 5.41669C2.16669 3.62177 3.62177 2.16669 5.41669 2.16669H20.5834C22.3783 2.16669 23.8334 3.62177 23.8334 5.41669V20.5834C23.8334 22.3783 22.3783 23.8334 20.5834 23.8334H5.41669C3.62177 23.8334 2.16669 22.3783 2.16669 20.5834V5.41669Z" fill="#2D2D2D"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13 13C10.0084 13 7.58331 10.0899 7.58331 6.5H9.74998C9.74998 9.2799 11.5582 10.8333 13 10.8333C14.4418 10.8333 16.25 9.2799 16.25 6.5H18.4166C18.4166 10.0899 15.9915 13 13 13Z" fill="#2D2D2D"/>
+                                </svg>                                    
+                            </div>
+                            <p class="menu__link-text">Market</p>
+                        </a>
+                    </li>
+
+
+                    <li class="menu__item">
+                        <a href="asset.html" class="menu__link">
+                            <div class="menu__icon-wrap">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.44444 0C1.08778 0 0 1.08778 0 2.44444V19.5556C0 20.9122 1.08778 22 2.44444 22H19.5556C20.9122 22 22 20.9122 22 19.5556V2.44444C22 1.08778 20.9122 0 19.5556 0H2.44444ZM2.44444 2.44444H19.5556V19.5556H2.44444V2.44444ZM4.88889 7.33333V4.88889H17.1111V7.33333H4.88889ZM4.88889 9.77778V12.2222H17.1111V9.77778H4.88889ZM4.88889 17.1111V14.6667H13.4444V17.1111H4.88889Z" fill="#2D2D2D"/>
+                                </svg>
+                            </div>
+                            <p class="menu__link-text">Exchange</p>
+                        </a>
+                    </li>
+
+                    <li class="menu__item">
+                        <a href="portfolio.html" class="menu__link">
+                            <div class="menu__icon-wrap">
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7.125 9.375H22.875C23.4963 9.375 24 9.79473 24 10.3125V23.4375C24 23.9553 23.4963 24.375 22.875 24.375H7.125C6.50368 24.375 6 23.9553 6 23.4375V10.3125C6 9.79474 6.50367 9.375 7.125 9.375ZM3.75 10.3125C3.75 8.7592 5.26104 7.5 7.125 7.5H22.875C24.739 7.5 26.25 8.7592 26.25 10.3125V23.4375C26.25 24.9908 24.739 26.25 22.875 26.25H7.125C5.26104 26.25 3.75 24.9908 3.75 23.4375V10.3125Z" fill="#2D2D2D"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M15 2.5C17.7614 2.5 20 4.73858 20 7.5L18 7.5C18 5.36162 16.3309 4.16667 15 4.16667C13.6691 4.16667 12 5.36162 12 7.5L10 7.5C10 4.73857 12.2386 2.5 15 2.5Z" fill="#2D2D2D"/>
+                                </svg>
+                            </div>
+                            <p class="menu__link-text">Portfolio</p>
+                        </a>
+                    </li>
+
+
+                    <li class="menu__item">
+                        <a href="settings.html" class="menu__link">
+                            <div class="menu__icon-wrap">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.53323 24C9.22489 24 8.96588 23.784 8.91654 23.496L8.46019 20.316C7.68316 20.016 7.01713 19.608 6.37577 19.128L3.30464 20.34C3.0333 20.436 2.70029 20.34 2.55228 20.076L0.0855125 15.924C-0.0748274 15.66 -0.00082439 15.336 0.233519 15.156L2.83596 13.164L2.74962 12L2.83596 10.8L0.233519 8.844C-0.00082439 8.664 -0.0748274 8.34 0.0855125 8.076L2.55228 3.924C2.70029 3.66 3.0333 3.552 3.30464 3.66L6.37577 4.86C7.01713 4.392 7.68316 3.984 8.46019 3.684L8.91654 0.504C8.96588 0.216 9.22489 0 9.53323 0H14.4668C14.7751 0 15.0341 0.216 15.0835 0.504L15.5398 3.684C16.3168 3.984 16.9829 4.392 17.6242 4.86L20.6954 3.66C20.9667 3.552 21.2997 3.66 21.4477 3.924L23.9145 8.076C24.0748 8.34 24.0008 8.664 23.7665 8.844L21.164 10.8L21.2504 12L21.164 13.2L23.7665 15.156C24.0008 15.336 24.0748 15.66 23.9145 15.924L21.4477 20.076C21.2997 20.34 20.9667 20.448 20.6954 20.34L17.6242 19.14C16.9829 19.608 16.3168 20.016 15.5398 20.316L15.0835 23.496C15.0341 23.784 14.7751 24 14.4668 24H9.53323ZM16.9335 12C16.9335 9.34903 14.7247 7.2 12 7.2C9.27528 7.2 7.06646 9.34903 7.06646 12C7.06646 14.651 9.27528 16.8 12 16.8C14.7247 16.8 16.9335 14.651 16.9335 12ZM9.53323 12C9.53323 10.6745 10.6376 9.6 12 9.6C13.3624 9.6 14.4668 10.6745 14.4668 12C14.4668 13.3255 13.3624 14.4 12 14.4C10.6376 14.4 9.53323 13.3255 9.53323 12ZM10.6186 5.532L11.075 2.4H12.925L13.3814 5.544C14.8615 5.832 16.1688 6.6 17.1185 7.668L20.091 6.42L21.016 7.98L18.4136 9.84C18.9069 11.244 18.9069 12.768 18.4136 14.172L21.0284 16.032L20.1033 17.592L17.1062 16.344C16.1565 17.4 14.8615 18.168 13.3937 18.468L12.9374 21.6H11.0626L10.6063 18.456C9.13855 18.168 7.8435 17.4 6.89379 16.344L3.89667 17.592L2.97163 16.032L5.5864 14.16C5.09305 12.768 5.09305 11.244 5.5864 9.84L2.98396 7.98L3.909 6.42L6.88146 7.668C7.83116 6.6 9.13855 5.832 10.6186 5.532Z" fill="#2D2D2D"/>
+                                </svg>
+                            </div>
+                            <p class="menu__link-text">Settings</p>
+                        </a>
+                    </li>
+
+                    <li class="menu__item">
+                        <a href="logout.html" class="menu__link">
+                            <div class="menu__icon-wrap">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M23.2497 11.25H13.7496C13.3356 11.25 12.9996 10.914 12.9996 10.5C12.9996 10.086 13.3356 9.75 13.7496 9.75H23.2497C23.6637 9.75 23.9997 10.086 23.9997 10.5C23.9997 10.914 23.6637 11.25 23.2497 11.25Z" fill="#2D2D2D"/>
+                                    <path d="M19.4997 15C19.3076 15 19.1157 14.927 18.9696 14.7801C18.6766 14.487 18.6766 14.012 18.9696 13.719L22.1897 10.4991L18.9696 7.27901C18.6766 6.98604 18.6766 6.51106 18.9696 6.21809C19.2628 5.92494 19.7377 5.92494 20.0307 6.21809L23.7807 9.96809C24.0737 10.2611 24.0737 10.736 23.7807 11.029L20.0307 14.779C19.8837 14.927 19.6918 15 19.4997 15Z" fill="#2D2D2D"/>
+                                    <path d="M8.00006 24C7.78601 24 7.58295 23.97 7.38007 23.907L1.36194 21.902C0.543091 21.616 0 20.853 0 20.0001V2.00006C0 0.897034 0.897034 0 2.00006 0C2.21393 0 2.41699 0.0300293 2.62006 0.0930176L8.638 2.09802C9.45703 2.38403 9.99994 3.14703 9.99994 3.99994V21.9999C9.99994 23.103 9.10309 24 8.00006 24ZM2.00006 1.5C1.72504 1.5 1.5 1.72504 1.5 2.00006V20.0001C1.5 20.213 1.64301 20.4109 1.84698 20.482L7.83691 22.478C7.87994 22.4919 7.93597 22.5 8.00006 22.5C8.27509 22.5 8.49994 22.275 8.49994 21.9999V3.99994C8.49994 3.78699 8.35693 3.58905 8.15295 3.51801L2.16302 1.52197C2.12 1.50806 2.06396 1.5 2.00006 1.5Z" fill="#2D2D2D"/>
+                                    <path d="M15.2496 8.00006C14.8356 8.00006 14.4996 7.66406 14.4996 7.25006V2.75006C14.4996 2.06104 13.9388 1.5 13.2498 1.5H1.99976C1.58575 1.5 1.24976 1.164 1.24976 0.75C1.24976 0.335999 1.58575 0 1.99976 0H13.2498C14.7668 0 15.9996 1.23303 15.9996 2.75006V7.25006C15.9996 7.66406 15.6636 8.00006 15.2496 8.00006Z" fill="#2D2D2D"/>
+                                    <path d="M13.2498 21H9.24963C8.83563 21 8.49963 20.664 8.49963 20.25C8.49963 19.836 8.83563 19.5 9.24963 19.5H13.2498C13.9388 19.5 14.4996 18.939 14.4996 18.2499V13.7499C14.4996 13.3359 14.8356 12.9999 15.2496 12.9999C15.6636 12.9999 15.9996 13.3359 15.9996 13.7499V18.2499C15.9996 19.767 14.7668 21 13.2498 21Z" fill="#2D2D2D"/>
+                                </svg>
+                            </div>
+                            <p class="menu__link-text">Logout</p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="visual-regime-wrap">
+                <!--
+                    data-regime: 0 - стандартный
+                                 1 - темный   
+                -->
+                <div class="visual-regime" data-regime="0">
+                    <div class="visual-regime__round">
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </aside>
+    <!--END: sidebar-->
+    <div class="mobile-hot-key">
+        <a href="index.html" class="mobile-hot-key__link mobile-hot-key__link_current">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M24 13.0534L12 1L0 13.0534H2.31282V24H10.7891V16.7023H13.2109V24H21.6872V13.0534H24ZM8.36731 14.2697V21.5674H4.73461V11.7277L12 4.42993L19.2654 11.7277V21.5674H15.6327V14.2697H13.2109H10.7891H8.36731Z" fill="#2D2D2D"/>
+            </svg>
+        </a>
+
+        <a href="market.html" class="mobile-hot-key__link">
+
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.41669 4.33335H20.5834C21.1817 4.33335 21.6667 4.81837 21.6667 5.41669V20.5834C21.6667 21.1817 21.1817 21.6667 20.5834 21.6667H5.41669C4.81838 21.6667 4.33335 21.1817 4.33335 20.5834V5.41669C4.33335 4.81838 4.81837 4.33335 5.41669 4.33335ZM2.16669 5.41669C2.16669 3.62177 3.62177 2.16669 5.41669 2.16669H20.5834C22.3783 2.16669 23.8334 3.62177 23.8334 5.41669V20.5834C23.8334 22.3783 22.3783 23.8334 20.5834 23.8334H5.41669C3.62177 23.8334 2.16669 22.3783 2.16669 20.5834V5.41669Z" fill="#2D2D2D"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M13 13C10.0084 13 7.58331 10.0899 7.58331 6.5H9.74998C9.74998 9.2799 11.5582 10.8333 13 10.8333C14.4418 10.8333 16.25 9.2799 16.25 6.5H18.4166C18.4166 10.0899 15.9915 13 13 13Z" fill="#2D2D2D"/>
+            </svg>                                    
+
+        </a>
+
+        <a href="portfolio.html" class="mobile-hot-key__link ">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M7.125 9.375H22.875C23.4963 9.375 24 9.79473 24 10.3125V23.4375C24 23.9553 23.4963 24.375 22.875 24.375H7.125C6.50368 24.375 6 23.9553 6 23.4375V10.3125C6 9.79474 6.50367 9.375 7.125 9.375ZM3.75 10.3125C3.75 8.7592 5.26104 7.5 7.125 7.5H22.875C24.739 7.5 26.25 8.7592 26.25 10.3125V23.4375C26.25 24.9908 24.739 26.25 22.875 26.25H7.125C5.26104 26.25 3.75 24.9908 3.75 23.4375V10.3125Z" fill="#2D2D2D"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M15 2.5C17.7614 2.5 20 4.73858 20 7.5L18 7.5C18 5.36162 16.3309 4.16667 15 4.16667C13.6691 4.16667 12 5.36162 12 7.5L10 7.5C10 4.73857 12.2386 2.5 15 2.5Z" fill="#2D2D2D"/>
+            </svg>
+        </a>
+
+        <a href="setting.html" class="mobile-hot-key__link ">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.53323 24C9.22489 24 8.96588 23.784 8.91654 23.496L8.46019 20.316C7.68316 20.016 7.01713 19.608 6.37577 19.128L3.30464 20.34C3.0333 20.436 2.70029 20.34 2.55228 20.076L0.0855125 15.924C-0.0748274 15.66 -0.00082439 15.336 0.233519 15.156L2.83596 13.164L2.74962 12L2.83596 10.8L0.233519 8.844C-0.00082439 8.664 -0.0748274 8.34 0.0855125 8.076L2.55228 3.924C2.70029 3.66 3.0333 3.552 3.30464 3.66L6.37577 4.86C7.01713 4.392 7.68316 3.984 8.46019 3.684L8.91654 0.504C8.96588 0.216 9.22489 0 9.53323 0H14.4668C14.7751 0 15.0341 0.216 15.0835 0.504L15.5398 3.684C16.3168 3.984 16.9829 4.392 17.6242 4.86L20.6954 3.66C20.9667 3.552 21.2997 3.66 21.4477 3.924L23.9145 8.076C24.0748 8.34 24.0008 8.664 23.7665 8.844L21.164 10.8L21.2504 12L21.164 13.2L23.7665 15.156C24.0008 15.336 24.0748 15.66 23.9145 15.924L21.4477 20.076C21.2997 20.34 20.9667 20.448 20.6954 20.34L17.6242 19.14C16.9829 19.608 16.3168 20.016 15.5398 20.316L15.0835 23.496C15.0341 23.784 14.7751 24 14.4668 24H9.53323ZM16.9335 12C16.9335 9.34903 14.7247 7.2 12 7.2C9.27528 7.2 7.06646 9.34903 7.06646 12C7.06646 14.651 9.27528 16.8 12 16.8C14.7247 16.8 16.9335 14.651 16.9335 12ZM9.53323 12C9.53323 10.6745 10.6376 9.6 12 9.6C13.3624 9.6 14.4668 10.6745 14.4668 12C14.4668 13.3255 13.3624 14.4 12 14.4C10.6376 14.4 9.53323 13.3255 9.53323 12ZM10.6186 5.532L11.075 2.4H12.925L13.3814 5.544C14.8615 5.832 16.1688 6.6 17.1185 7.668L20.091 6.42L21.016 7.98L18.4136 9.84C18.9069 11.244 18.9069 12.768 18.4136 14.172L21.0284 16.032L20.1033 17.592L17.1062 16.344C16.1565 17.4 14.8615 18.168 13.3937 18.468L12.9374 21.6H11.0626L10.6063 18.456C9.13855 18.168 7.8435 17.4 6.89379 16.344L3.89667 17.592L2.97163 16.032L5.5864 14.16C5.09305 12.768 5.09305 11.244 5.5864 9.84L2.98396 7.98L3.909 6.42L6.88146 7.668C7.83116 6.6 9.13855 5.832 10.6186 5.532Z" fill="#2D2D2D"/>
+            </svg>
+        </a>
+        
+    </div>
+    <!--BEGIN: content section-->
+    <main class="content">
+        <div class="main__inner">
+
+        
+
+        
+
+
+        <!--BEGIN: header-->
+            <header class="header">
+
+                <div class="hamburger">
+                    <div class="hamburger__line"></div>
+                    <div class="hamburger__line"></div>
+                    <div class="hamburger__line"></div>
+                </div>
+
+                <h1 class="page-title">Market</h1>
+
+                <div class="userbar">
+                    <button class="userbar__button"> 
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M2 2.5H18C19.1046 2.5 20 3.3861 20 4.47917V16.3542C20 17.4472 19.1046 18.3333 18 18.3333H2C0.89 18.3333 0 17.4427 0 16.3542V4.47917C0 3.38073 0.89 2.5 2 2.5ZM10 9.42708L18 4.47917H2L10 9.42708ZM18 6.82448V16.3542H2V6.82448L10 11.7625L18 6.82448Z" fill="#2D2D2D"/>
+                        </svg>
+                    </button>
+
+                    <button class="userbar__button"> 
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 20C4.477 20 0 15.523 0 10C0 4.477 4.477 0 10 0C15.523 0 20 4.477 20 10C20 15.523 15.523 20 10 20ZM5.013 16.256C6.42855 17.3877 8.18768 18.0029 10 18C11.97 18 13.773 17.288 15.167 16.108C14.5157 15.4397 13.7371 14.9089 12.877 14.5468C12.017 14.1847 11.0931 13.9988 10.16 14C9.19259 13.9989 8.2355 14.1989 7.34947 14.5872C6.46343 14.9756 5.66778 15.5439 5.013 16.256ZM3.616 14.82C4.45645 13.9281 5.47067 13.2177 6.59614 12.7327C7.72161 12.2477 8.93448 11.9984 10.16 12C11.3417 11.9985 12.512 12.2304 13.6037 12.6824C14.6955 13.1344 15.6873 13.7976 16.522 14.634C17.3781 13.4291 17.8836 12.0106 17.9826 10.5359C18.0815 9.06119 17.77 7.58789 17.0825 6.27946C16.395 4.97102 15.3585 3.87862 14.088 3.12345C12.8174 2.36827 11.3625 1.97984 9.8846 2.00125C8.40672 2.02267 6.96366 2.45308 5.71552 3.24476C4.46738 4.03643 3.46296 5.1584 2.81369 6.4862C2.16442 7.814 1.89569 9.29571 2.03732 10.7669C2.17894 12.2382 2.72537 13.6414 3.616 14.821V14.82ZM10 11C8.93913 11 7.92172 10.5786 7.17157 9.82843C6.42143 9.07828 6 8.06087 6 7C6 5.93913 6.42143 4.92172 7.17157 4.17157C7.92172 3.42143 8.93913 3 10 3C11.0609 3 12.0783 3.42143 12.8284 4.17157C13.5786 4.92172 14 5.93913 14 7C14 8.06087 13.5786 9.07828 12.8284 9.82843C12.0783 10.5786 11.0609 11 10 11ZM10 9C10.5304 9 11.0391 8.78929 11.4142 8.41421C11.7893 8.03914 12 7.53043 12 7C12 6.46957 11.7893 5.96086 11.4142 5.58579C11.0391 5.21071 10.5304 5 10 5C9.46957 5 8.96086 5.21071 8.58579 5.58579C8.21071 5.96086 8 6.46957 8 7C8 7.53043 8.21071 8.03914 8.58579 8.41421C8.96086 8.78929 9.46957 9 10 9Z" fill="#2D2D2D"/>
+                        </svg>
+                            
+                    </button>
+                </div>
+            </header>
+            <!--END: header-->
+            <section class="page-content page-content_other">
+                <div class="page-row">
+                    <div class="pages-1st-col filter-col">
+                        <div class="page-card page-card_slim">
+                            <div class="page-card__header">
+                                <h4 class="page-card__title">Filters</h4>
+                                
+                                <div class="filter">
+                                    <div class="filter__btn">Open all</div>
+                                    <div class="filter__arrow">
+                                        <img src="../static/assets/img/small-arrow.png" alt="open filter">
+                                    </div>
+                                </div>
+        
+                            </div>
+                        </div>
+
+                        <div class="page-card page-card_slim">
+                            <ul class="filters-list">
+                                <li class="filters-list__item">
+                                    <p class="filters-list__name">Type</p>
+                                    <div class="filters-list__arrow">
+                                        <img src="../static/assets/img/filter-arrow.png" >
+                                    </div>
+                                </li>
+
+
+                                <li class="filters-list__item">
+                                    <p class="filters-list__name">Risk</p>
+                                    <div class="filters-list__arrow">
+                                        <img src="../static/assets/img/filter-arrow.png" >
+                                    </div>
+                                </li>
+
+                                <li class="filters-list__item">
+                                    <p class="filters-list__name">Capitalisation</p>
+                                    <div class="filters-list__arrow">
+                                        <img src="../static/assets/img/filter-arrow.png" >
+                                    </div>
+                                </li>
+
+                                <li class="filters-list__item">
+                                    <p class="filters-list__name">Sector</p>
+                                    <div class="filters-list__arrow">
+                                        <img src="../static/assets/img/filter-arrow.png" >
+                                    </div>
+                                </li>
+
+                                <li class="filters-list__item">
+                                    <p class="filters-list__name">Price change</p>
+                                    <div class="filters-list__arrow">
+                                        <img src="../static/assets/img/filter-arrow.png" >
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    <div class="pages-2st-col stock-col">
+                        <div class="search">
+                            <div class="search__icon">
+                                <img src="../static/assets/img/search.png">
+                            </div>
+                            <form action="" class="search__form">
+                                <input type="text" class="search__input" placeholder="Find some intresting stocks, or mb smthng else...">
+                            </form>
+
+
+                            <div class="filter-mob">
+                                <svg width="17" height="13" viewBox="0 0 17 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect y="0.719971" width="17" height="2.04" fill="#525252"/>
+                                    <rect y="5.47997" width="13.6" height="2.04" fill="#525252"/>
+                                    <rect y="10.24" width="8.16" height="2.04" fill="#525252"/>
+                                </svg>                                
+                            </div>
+                        </div>
+
+                        {% for asset in assets %}
+                        <div class="s-index">
+                            <div class="company-logo">
+                                <img src="{% static asset.icon %}" alt="{{ asset.name }}" style="width: 48px; height: 48px">
+                            </div>
+                            <div class="s-index__company">
+                                <h4 class="s-index__company-name">{{ asset.name }}</h4>
+                                <p class="s-index__company-trand">{{ asset.sector }}</p>
+                            </div>
+
+                            <div class="s-index__risk-block hight-risk">
+                                
+                            </div>
+
+                            <p class="s-index__company-value"></p>
+                            <p class="s-index__stock-value">{{ asset.price }}</p>
+
+                            <div class="s-index__percent s-index__percent_up-trand">
+                                <div class="s-index__trand-arrow">
+                                    <img src="../static/assets/img/small-arrow.png" >
+                                </div>
+                                <p class="s-index__percent-value">62.5%</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                    <div class="pages-3st-col market-3st-col">
+                        <div class="page-card page-card_slim page-card_statistic">
+                            <div class="page-card__header">
+                                <h4 class="page-card__title page-card__title_statistic">S&P 500 statistics</h4>
+                            </div>
+                            <div class="page-card__body page-card__body_statistic">
+                                <div class="statistic">
+                                    <div class="statistic__data">
+                                        <div class="statistic__value sv_market">$3,841.94</div>
+        
+                                        <!--
+                                            statistic_trand-up - окрашивает значение прироста процентов и стрелку в фиоолетовый цвет
+                                            statistic_trand-down - окрашивает значение прироста процентов и стрелку в оранжевый цвет
+        
+                                        -->
+        
+                                        <div class="statistic__percent statistic_trand-up">
+                                            <div class="statistic__percent-value">+22.63%</div>
+                                            <div class="statistic__percent-trand">
+                                                <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.9962 0.990216C5.81064 0.989439 5.62482 1.06471 5.49132 1.21599L0.831305 6.49704C0.589046 6.77158 0.617422 7.18861 0.894684 7.42849C1.17195 7.66838 1.5931 7.64028 1.83536 7.36574L5.33334 3.40159L5.33334 12.2124C5.33334 12.577 5.63181 12.8726 6 12.8726C6.36819 12.8726 6.66667 12.577 6.66667 12.2124L6.66667 3.41288L10.1653 7.36644C10.4079 7.64064 10.8291 7.66815 11.106 7.42788C11.3829 7.18761 11.4107 6.77054 11.1681 6.49634L6.55174 1.27968C6.4318 1.10497 6.22944 0.990206 6 0.990206C5.99874 0.990206 5.99747 0.99021 5.9962 0.990216Z" fill="#FE7C6F"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="statistic__incriment">
+                                        Compared to ($13850 last year)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="market-offer">
+                            <div class="market-offer__img-wrap">
+                                <img src="../static/assets/img/Replenishment_bonus.png" alt="Replenishment bonus">
+                            </div>
+        
+                            <h3 class="market-offer__title">Replenishment bonus 2%</h3>
+
+                            <a href="#" class="market-offer__btn">
+                                Replenish Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+            </section>
+        </div>
+    </main>
+    <!--END: content section-->
+
+    <!--Скрипты общего назначения-->
+    <script src="../static/assets/js/main.js"></script>
+    
+</body>
+</html>
