@@ -1,20 +1,34 @@
-<h1>How to start project:</h1>
+# Dockerizing Django with Postgres, Gunicorn, and Nginx
 
-Firs of all, check installed Docker<br>
-After, you can use command in terminal:
+## Want to learn how to build this?
 
-<code>git clone https://github.com/mrpie228/invest_app</code>
+Check out the [post](https://testdriven.io/dockerizing-django-with-postgres-gunicorn-and-nginx).
 
-OR
+## Want to use this project?
 
-<img src='instructions/Screenshot_4.png'>
-<img src='instructions/Screenshot_5.png'>
-<img src='instructions/Screenshot_6.png'>
+### Development
 
-Then you need to input:<br>
-<code>docker-compose build</code><br>
-<img src='instructions/Screenshot_10.png'>
-<code>docker-compose up</code><br>
-<img src='instructions/Screenshot_11.png'>
+Uses the default Django development server.
 
-<h2>congratulations!</h2>
+1. Rename *.env.dev-sample* to *.env.dev*.
+1. Update the environment variables in the *docker-compose.yml* and *.env.dev* files.
+1. Build the images and run the containers:
+
+    ```sh
+    $ docker-compose up -d --build
+    ```
+
+    Test it out at [http://localhost:8000](http://localhost:8000). The "app" folder is mounted into the container and your code changes apply automatically.
+
+### Production
+
+Uses gunicorn + nginx.
+
+1. Rename *.env.prod-sample* to *.env.prod* and *.env.prod.db-sample* to *.env.prod.db*. Update the environment variables.
+1. Build the images and run the containers:
+
+    ```sh
+    $ docker-compose -f docker-compose.prod.yml up -d --build
+    ```
+
+    Test it out at [http://localhost:1337](http://localhost:1337). No mounted folders. To apply changes, the image must be re-built.

@@ -1,59 +1,77 @@
-version: "3"
-
-volumes:
-  local_postgres_data: {}
-  local_postgres_data_backups: {}
+version: '3.5'
 
 services:
-  nginx:
-    image: nginx:alpine
-    container_name: nz01
+  web:
+    build: ./app
+    container_name: my_web
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./app/:/usr/src/app/
     ports:
       - "8000:8000"
-    volumes:
-      - ./src:/src
-      - ./config/nginx:/etc/nginx/conf.d
-    depends_on:
-      - web
-    networks:
-      - djangonetwork
-  web:
-    build:
-      context: .
-      dockerfile: compose/django/Dockerfile
-    container_name: dz01
+    env_file:
+      - ./.env.dev
     depends_on:
       - db
+      - redis
+    networks:
+      invnetwork:
+        ipv4_address: "172.44.0.4"
+
+  db:
+    image: postgres:12.0-alpine
+    container_name: database_postgres
     volumes:
-      - ./src:/src
-    expose:
-      - "8000"
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=hello_django
+      - POSTGRES_PASSWORD=hello_django
+      - POSTGRES_DB=hello_django_dev
+    ports:
+      - "5432:5432"
+    networks:
+      invnetwork:
+        ipv4_address: "172.44.0.2"
+
+  celery:
+    build: ./app
+    command: celery -A cel_task worker -B
+    restart: always
+    container_name: celery
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - web
+      - redis
     links:
       - redis
-    env_file:
-      - ./.envs/.django
-    networks:
-      - djangonetwork
-  db:
-    build:
-      context: .
-      dockerfile: compose/postgres/Dockerfile
-    container_name: pz01
-    env_file:
-      - ./.envs/.postgres
     volumes:
-      - local_postgres_data:/var/lib/postgresql/data
-      - local_postgres_data_backups:/backups
+      - ./app/:/usr/src/app/
     networks:
-      - djangonetwork
+      invnetwork:
+        ipv4_address: "172.44.0.3"
+
   redis:
-    image: redis:alpine
-    container_name: rz01
+    image: redis:latest
+    command: [ "redis-server", "--appendonly", "yes" ]
+    container_name: redis
+    restart: always
+    hostname: redis
     ports:
-      - "6379:6379"
+      - 6379:6379
     networks:
-      - djangonetwork
+      invnetwork:
+        ipv4_address: "172.44.0.5"
+    volumes:
+      - redis-data:/data
 
 networks:
-  djangonetwork:
+  invnetwork:
     driver: bridge
+    ipam:
+      config:
+        - subnet: "172.44.0.0/16"
+volumes:
+  postgres_data:
+  redis-data:
+  disk-buffer:
