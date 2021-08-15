@@ -22,6 +22,8 @@ urlpatterns = [
     path('asset/<ticker>', AssetView.as_view(), name='asset_view'),
 
     # portfolio
-    path('portfolio/', PortfolioView.as_view(), name='portfolio_view')
+    path('portfolio/', PortfolioView.as_view(), name='portfolio_view'),
+
+    path('buy/asset/', BuyAsset.as_view(), name='buy_asset')
 
 ]

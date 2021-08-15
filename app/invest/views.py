@@ -101,9 +101,24 @@ class AssetView(generics.RetrieveAPIView):
 class PortfolioView(LoginListView):
     def get(self, request):
         user = request.user
-        print(user)
-        profile = Profile.objects.filter(user=user).first()
-        portfolio = Portfolio.objects.filter(profile=profile).first()
-        serializer = PortfolioSerializer(portfolio)
+        items = Item.objects.filter(user=user)
+        print(items)
+        serializer = ItemSerializer(items, many=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class BuyAsset(LoginAPIView):
+    def post(self, request):
+        data = request.data
+        ticker = data['ticker']
+        count = data['count']
+        asset = Asset.objects.filter(ticker=ticker).first()
+        print(ticker)
+
+        def get_price(asset, count):
+            return asset.price * count
+
+        item = Item.objects.create(user=request.user, asset=asset, count=count, purchase_price=get_price(asset, count))
+        item.save()
+        return Response('F', status=status.HTTP_200_OK)

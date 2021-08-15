@@ -62,7 +62,6 @@ def create_user_profile(sender, instance, created, **kwargs):
 post_save.connect(create_user_profile, sender=User)
 
 
-# Create your models here.
 class Asset(models.Model):
     icon = models.FileField("Изображение", upload_to="stocks_icon", null=True)
     name = models.CharField(max_length=255, verbose_name='Наименование актива',
@@ -84,34 +83,26 @@ class Asset(models.Model):
 
 
 class Item(models.Model):
-    asset = models.ManyToManyField(Asset)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE, related_name='asset')
+    statuses = [('in_processing', 'In processing'),
+                ('bought', 'Bought'),
+                ('sold', 'Sold'),
+                ('failed', 'Failed')]
+    status = models.CharField(max_length=20, choices=statuses,
+                              verbose_name='Status',
+                              default=statuses[0][0])
     purchase_price = models.DecimalField('Сумма', max_digits=6, decimal_places=2, null=True, default=0)
-    # if asset.type == 'stock' or asset.type == 'no_type':
-    #     count = models.PositiveIntegerField(verbose_name='Количество')
-    # else:
-    count = models.FloatField(verbose_name='Количество ')
+    count = models.FloatField(verbose_name='Количество')
 
-# def set_item_price(sender, instance, created, **kwargs):
-#     if created:
-#         print(instance.asset.id)
-#         instance.purchase_price = float(instance.asset.first().price) * instance.count
-#         instance.save()
+    def __str__(self):
+        return f'{self.user} {self.status} {self.count} {self.asset}'
 
 
-# post_save.connect(set_item_price, sender=Item)
-
-class Portfolio(models.Model):
-    items = models.ManyToManyField(Item, verbose_name='Активы', related_name='assets', null=True)
-    profile = models.OneToOneField(Profile, verbose_name='Профиль',
-                                   related_name='profile', on_delete=models.CASCADE)
-    sum = models.DecimalField('Сумма', max_digits=6, decimal_places=2, null=True, default=0)
-
-
-
-
-class Deal(models.Model):
+class DealHistory(models.Model):
     time = models.TimeField(auto_now_add=True)
-    items = models.ManyToManyField(Item, verbose_name='Предметы сделки', related_name='deal_assets', null=True)
+    items = models.OneToOneField(Item, verbose_name='Предметы сделки', related_name='deal_assets', null=True,
+                                 on_delete=models.CASCADE)
     WHAT_HAPPEND = [('no_type', ' Без типа'),
                     ('buy_stock', 'Покупка акции/облигации'),
                     ('buy_crypto', 'Покупка токенизированных активов'),
@@ -121,11 +112,8 @@ class Deal(models.Model):
     deal_type = models.CharField(max_length=20, choices=WHAT_HAPPEND,
                                  verbose_name='Тип сделки',
                                  default=WHAT_HAPPEND[0][0])
-    dealers = models.ManyToManyField(User, verbose_name='Участник(и) сделки',
-                                     related_name='dealers')
+    recipient = models.OneToOneField(User, verbose_name='Участник сделки',
+                                     related_name='dealers', on_delete=models.CASCADE)
     deal_owner = models.OneToOneField(User, verbose_name='Иннициатор сделки',
                                       related_name='deal_owner', on_delete=models.CASCADE)
     price = models.DecimalField('Стоимость актива', max_digits=6, decimal_places=2)
-
-# class Commision(models.Model):
-#     percent = models.DecimalField('Процент коммисии',)

@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import *
 from django.contrib.auth.models import User
+from django import forms
 
 
 class AssetsSerializer(serializers.ModelSerializer):
@@ -22,16 +23,13 @@ class AssetSerializer(serializers.ModelSerializer):
 
 
 class ItemSerializer(serializers.ModelSerializer):
-    asset = AssetsInPortfolioSerializer(many=True)
+    asset = AssetsInPortfolioSerializer()
 
     class Meta:
         model = Item
         fields = ['asset', 'count', 'purchase_price']
 
 
-class PortfolioSerializer(serializers.ModelSerializer):
-    items = ItemSerializer(many=True)
-
-    class Meta:
-        model = Portfolio
-        fields = ['items', 'sum']
+class BuyAssetForm(forms.Form):
+    ticker = forms.CharField(label='Label', max_length=100)
+    count = forms.IntegerField(label='Count')
