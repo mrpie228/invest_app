@@ -32,7 +32,8 @@ ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:8080",
     "http://192.168.100.2:8080",
-    "http://192.168.100.6:8080"
+    "http://192.168.100.7:8080",
+    "http://192.168.42.3:8080"
 ]
 
 INSTALLED_APPS = [
@@ -145,8 +146,8 @@ CORS_ORIGINS_ALLOW_ALL = True
 CORS_ALLOW_GREDENTIALS = True
 
 REST_FRAMEWORK = {
-    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    # 'PAGE_SIZE': 10,
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ),

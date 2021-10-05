@@ -1,3 +1,4 @@
+from django.db.models import F, Sum
 from django.shortcuts import render
 from .parse_stocks import create_all, PATH_TO_STOCKS_DB_LIST
 from rest_framework import generics, permissions, status
@@ -9,6 +10,9 @@ from .serializers import *
 import sqlite3
 from django.http import Http404
 import json
+from itertools import groupby
+from operator import attrgetter
+from rest_framework.pagination import PageNumberPagination
 
 
 class LoginAPIView(APIView):
@@ -16,7 +20,7 @@ class LoginAPIView(APIView):
 
 
 class LoginListView(generics.ListAPIView):
-    permissions_classes = [permissions.IsAuthenticated]
+    permissions_classes = [permissions.IsAuthenticated, ]
 
 
 class Logout(APIView):
@@ -76,15 +80,8 @@ class UpdateStocks(APIView):
 
 class AssetsView(generics.ListAPIView):
     serializer_class = AssetsSerializer
-
-    def get_queryset(self):
-        try:
-            assets = Asset.objects.all().order_by('name')
-            serializer = AssetsSerializer(assets, many=True)
-        except:
-            raise Http404("We cant find this asset")
-
-        return assets
+    pagination_class = PageNumberPagination
+    queryset = assets = Asset.objects.all().order_by('name')
 
 
 class AssetView(generics.RetrieveAPIView):
@@ -101,24 +98,36 @@ class AssetView(generics.RetrieveAPIView):
 class PortfolioView(LoginListView):
     def get(self, request):
         user = request.user
-        items = Item.objects.filter(user=user)
+        items = Item.objects.filter(user=user).annotate(ticker=F('asset__ticker'), price=F('asset__price'))
         print(items)
-        serializer = ItemSerializer(items, many=True)
+        serializer = ItemSerializer(data=items, many=True)
+        serializer.is_valid()
+        assets = serializer.validated_data
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class BuyAsset(LoginAPIView):
+    serializer_class = BuyAssetSerializer
+
     def post(self, request):
-        data = request.data
-        ticker = data['ticker']
-        count = data['count']
+        serializer = self.serializer_class(data={'ticker': request.data['ticker'], 'count': request.data['count']})
+        serializer.is_valid()
+
+        ticker = serializer.validated_data['ticker']
+        count = serializer.validated_data['count']
         asset = Asset.objects.filter(ticker=ticker).first()
-        print(ticker)
 
         def get_price(asset, count):
             return asset.price * count
 
-        item = Item.objects.create(user=request.user, asset=asset, count=count, purchase_price=get_price(asset, count))
+        #
+        item = Item.objects.filter(user=request.user, asset=asset).first()
+        if item:
+            item.count = item.count + float(count)
+            item.purchase_price = item.purchase_price + asset.price
+        else:
+            item = Item.objects.create(user=request.user, asset=asset, count=count,
+                                       purchase_price=get_price(asset, count))
         item.save()
         return Response('F', status=status.HTTP_200_OK)

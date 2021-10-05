@@ -30,6 +30,11 @@ class ItemSerializer(serializers.ModelSerializer):
         fields = ['asset', 'count', 'purchase_price']
 
 
+class BuyAssetSerializer(serializers.Serializer):
+    ticker = serializers.CharField(max_length=256)
+    count = serializers.DecimalField(max_digits=6, decimal_places=2)
+
+
 class BuyAssetForm(forms.Form):
     ticker = forms.CharField(label='Label', max_length=100)
     count = forms.IntegerField(label='Count')
